@@ -39,16 +39,18 @@ public class Bird {
         birdImage = birdImages[(index / 4) % 3];
 
     }
-
+    //是否通过管子
     public boolean pass(Column column) {
         return x>column.x + column.pipe_up.getWidth();
 
     }
-
+    //碰撞
     public boolean hit(Column column) {
+        //撞地
         if (this.y + this.birdImage.getHeight() >= 560) {
             return true;
         } else {
+            //撞到管子
             if (x+birdImage.getWidth() >= column.x && x <= column.x + column.pipe_up.getWidth()){
                 return !(y > column.pipe_up.getHeight() + column.y && y+birdImage.getHeight() < column.y + column.pipe_up.getHeight() + column.ySpace);
             }

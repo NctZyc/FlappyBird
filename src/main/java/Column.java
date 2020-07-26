@@ -11,9 +11,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Column {
     public int x; // 上方管子左上角x坐标
     public int y; // 上方管子左上角y坐标
-    public int ySpace; // 上下管子间隔
+    public int ySpace;  // 上下管子间隔
     private int xSpace; // 前后管子间隔
-    int speed;
+    int speed;  //移动速度
     BufferedImage pipe_up;
     BufferedImage pipe_down;
     ColumnImage columnImage;
@@ -38,6 +38,7 @@ public class Column {
         }
 
     }
+
     public void move(){
         x= this.x - speed;
     }
@@ -45,19 +46,5 @@ public class Column {
     public synchronized void paint(Graphics g){
         g.drawImage(pipe_up,x,y,null);
         g.drawImage(pipe_down,x,y+pipe_up.getHeight()+ySpace,null);
-    }
-
-    @Override
-    public String toString() {
-        return "Column{" +
-                "x=" + x +
-                ", y=" + y +
-                ", ySpace=" + ySpace +
-                ", xSpace=" + xSpace +
-                ", speed=" + speed +
-                ", pipe_up=" + pipe_up +
-                ", pipe_down=" + pipe_down +
-                ", passed=" + passed +
-                '}';
     }
 }
