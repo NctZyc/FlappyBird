@@ -2,9 +2,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.Random;
-
 /**
  * @author: zyc
  * @date: 2020/7/21 16:16
