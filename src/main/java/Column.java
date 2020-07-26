@@ -1,4 +1,3 @@
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -19,32 +18,34 @@ public class Column {
     ColumnImage columnImage;
     boolean passed = false;
 
-    public Column(CopyOnWriteArrayList<Column> pipeList,int score) throws IOException {
-        speed=4;
+    public Column(CopyOnWriteArrayList<Column> pipeList, int score) throws IOException {
+        speed = 4;
         columnImage = Utility.getRandomColumnImage();
         pipe_up = columnImage.up;
         pipe_down = columnImage.down;
         int size = pipeList.size();
-        if(pipeList.isEmpty()){this.x=1050;}
-        else{this.x = pipeList.get(size-1).x+pipe_up.getWidth()+pipeList.get(size-1).xSpace;}
-            this.y = Utility.getRandomY();
-        if(score<=10) {
+        if (pipeList.isEmpty()) {
+            this.x = 1050;
+        } else {
+            this.x = pipeList.get(size - 1).x + pipe_up.getWidth() + pipeList.get(size - 1).xSpace;
+        }
+        this.y = Utility.getRandomY();
+        if (score <= 10) {
             this.ySpace = Utility.getRandomYSpace(Utility.EASY);
             this.xSpace = Utility.getRandomXSpace(Utility.EASY);
-        }
-        else {
+        } else {
             this.ySpace = Utility.getRandomYSpace(Utility.HARD);
             this.xSpace = Utility.getRandomXSpace(Utility.HARD);
         }
 
     }
 
-    public void move(){
-        x= this.x - speed;
+    public void move() {
+        x = this.x - speed;
     }
 
-    public synchronized void paint(Graphics g){
-        g.drawImage(pipe_up,x,y,null);
-        g.drawImage(pipe_down,x,y+pipe_up.getHeight()+ySpace,null);
+    public synchronized void paint(Graphics g) {
+        g.drawImage(pipe_up, x, y, null);
+        g.drawImage(pipe_down, x, y + pipe_up.getHeight() + ySpace, null);
     }
 }

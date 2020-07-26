@@ -63,7 +63,7 @@ public class Game extends JPanel {
         gameOver = false;
         bird = new Bird();
         ground = new Ground();
-        column = new Column(pipeList,score);
+        column = new Column(pipeList, score);
         pipeList.add(column);
         bgImage = Utility.getBackGroundImage();
         beginButton = new JLabel(beginImage);
@@ -90,8 +90,9 @@ public class Game extends JPanel {
                 beginButton.setVisible(false);
             }
         });
-        if (!ifRestart) {layeredPane.add(beginButton, JLayeredPane.POPUP_LAYER);}
-        else {
+        if (!ifRestart) {
+            layeredPane.add(beginButton, JLayeredPane.POPUP_LAYER);
+        } else {
             start = true;
             Start();
         }
@@ -104,7 +105,7 @@ public class Game extends JPanel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                if(gameOver) return;
+                if (gameOver) return;
                 bird.isJumping = true;
                 bird.ySpeed = -12;
             }
@@ -114,7 +115,7 @@ public class Game extends JPanel {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    if(gameOver) return;
+                    if (gameOver) return;
                     bird.isJumping = true;
                     bird.ySpeed = -12;
                 }
@@ -128,8 +129,8 @@ public class Game extends JPanel {
         JLabel tutorial_label = new JLabel(tutorial);
         ready_label.setBounds(402, 200, ready.getIconWidth(), ready.getIconHeight());
         tutorial_label.setBounds(443, 400, tutorial.getIconWidth(), tutorial.getIconHeight());
-        layeredPane.add(ready_label,JLayeredPane.PALETTE_LAYER);
-        layeredPane.add(tutorial_label,JLayeredPane.PALETTE_LAYER);
+        layeredPane.add(ready_label, JLayeredPane.PALETTE_LAYER);
+        layeredPane.add(tutorial_label, JLayeredPane.PALETTE_LAYER);
 
         java.util.Timer t = new Timer();
         t.schedule(new TimerTask() {
@@ -160,7 +161,7 @@ public class Game extends JPanel {
                 if (start && !gameOver) {
                     if (pipeList.size() < 6) {
                         try {
-                            column = new Column(pipeList,score);
+                            column = new Column(pipeList, score);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -229,7 +230,7 @@ public class Game extends JPanel {
         layeredPane.add(currentScore_label, JLayeredPane.POPUP_LAYER);
 
         //最好分数
-        if(score>best) best= score;
+        if (score > best) best = score;
         bestScore_label = new JLabel(String.valueOf(best));
         bestScore_label.setBounds(565, 305, 20, 20);
         layeredPane.add(bestScore_label, JLayeredPane.POPUP_LAYER);

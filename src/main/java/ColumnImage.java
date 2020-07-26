@@ -7,7 +7,8 @@ import java.awt.image.BufferedImage;
 public class ColumnImage {
     public BufferedImage up;
     public BufferedImage down;
-    public ColumnImage(BufferedImage up,BufferedImage down) {
+
+    public ColumnImage(BufferedImage up, BufferedImage down) {
         this.up = up;
         this.down = down;
     }

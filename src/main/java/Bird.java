@@ -1,8 +1,6 @@
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * @author: zyc
@@ -39,11 +37,13 @@ public class Bird {
         birdImage = birdImages[(index / 4) % 3];
 
     }
+
     //是否通过管子
     public boolean pass(Column column) {
-        return x>column.x + column.pipe_up.getWidth();
+        return x > column.x + column.pipe_up.getWidth();
 
     }
+
     //碰撞
     public boolean hit(Column column) {
         //撞地
@@ -51,14 +51,14 @@ public class Bird {
             return true;
         } else {
             //撞到管子
-            if (x+birdImage.getWidth() >= column.x && x <= column.x + column.pipe_up.getWidth()){
-                return !(y > column.pipe_up.getHeight() + column.y && y+birdImage.getHeight() < column.y + column.pipe_up.getHeight() + column.ySpace);
+            if (x + birdImage.getWidth() >= column.x && x <= column.x + column.pipe_up.getWidth()) {
+                return !(y > column.pipe_up.getHeight() + column.y && y + birdImage.getHeight() < column.y + column.pipe_up.getHeight() + column.ySpace);
             }
         }
         return false;
     }
 
-    public synchronized void paint(Graphics g){
+    public synchronized void paint(Graphics g) {
         g.drawImage(birdImage, x, y, null);
     }
 }
