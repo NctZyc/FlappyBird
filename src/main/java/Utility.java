@@ -10,26 +10,29 @@ import java.util.Random;
  * @date: 2020/7/21 16:16
  */
 public class Utility {
+    //难度
     public static final int EASY =10;
     public static final int HARD =20;
     private static Random random = new Random();
-
+    //管子随机y坐标
     public static int getRandomY() {
         return random.nextInt(101)-200;
     }
 
+    //上下管子随机间隔
     public static int getRandomYSpace(int level) {
         if(level == EASY)
             return random.nextInt(51)+150;
         else return random.nextInt(51)+100;
     }
 
+    //前后管子水平间隔
     public static int getRandomXSpace(int level) {
         if(level == EASY)
             return random.nextInt(51)+200;
         else return random.nextInt(51)+150;
     }
-
+    //随机背景图
     public static BufferedImage getBackGroundImage() throws IOException {
         if(random.nextInt(2)<1)
             return ImageIO.read(Utility.class.getResource("img/bg_day.png"));
@@ -37,7 +40,7 @@ public class Utility {
             return ImageIO.read(Utility.class.getResource("img/bg_night.png"));
 
     }
-
+    //随机管子图
     public static ColumnImage getRandomColumnImage() throws IOException {
         if(random.nextInt(6)<5)
             return new ColumnImage(ImageIO.read(Utility.class.getResource("img/pipe_up.png"))
@@ -46,8 +49,8 @@ public class Utility {
             return new ColumnImage(ImageIO.read(Utility.class.getResource("img/pipe2_up.png"))
                     ,ImageIO.read(Utility.class.getResource("img/pipe2_down.png")));
     }
-
-       public static BufferedImage[] getRandomBirdImages() throws IOException {
+    //随机鸟
+    public static BufferedImage[] getRandomBirdImages() throws IOException {
           BufferedImage[]  birdImages = new BufferedImage[3];
           int x = random.nextInt(3);
            switch(x){
@@ -73,11 +76,11 @@ public class Utility {
            }
            return birdImages;
        }
-
-       public static ImageIcon getMedal(int score){
-            if(score<3){ return new ImageIcon(Utility.class.getResource("img/medals_0.png"));}
-            else if(score<7){ return new ImageIcon(Utility.class.getResource("img/medals_2.png"));}
-            else if(score<12){ return new ImageIcon(Utility.class.getResource("img/medals_3.png"));}
-            else { return new ImageIcon(Utility.class.getResource("img/medals_1.png"));}
+    //奖牌判定
+    public static ImageIcon getMedal(int score){
+        if(score<3){ return new ImageIcon(Utility.class.getResource("img/medals_0.png"));}
+        else if(score<7){ return new ImageIcon(Utility.class.getResource("img/medals_2.png"));}
+        else if(score<12){ return new ImageIcon(Utility.class.getResource("img/medals_3.png"));}
+        else { return new ImageIcon(Utility.class.getResource("img/medals_1.png"));}
        }
 }

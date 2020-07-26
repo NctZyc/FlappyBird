@@ -30,6 +30,7 @@ public class Game extends JPanel {
     JLabel score_label;
     JLabel medal_label;
     JLabel currentScore_label;
+    JLabel bestScore_label;
     JLabel home_label;
     JLabel restart_label;
     JFrame jFrame;
@@ -37,6 +38,7 @@ public class Game extends JPanel {
     CopyOnWriteArrayList<Column> pipeList = new CopyOnWriteArrayList<>();// 管子容器
     private ScheduledExecutorService service;// 计时器
     int score;
+    int best;
     boolean ifRestart = false;
 
     public Game() throws Exception {
@@ -55,7 +57,7 @@ public class Game extends JPanel {
         jFrame.setVisible(true);
     }
 
-
+    //主界面
     public void Home() throws Exception {
         start = false;
         gameOver = false;
@@ -95,6 +97,7 @@ public class Game extends JPanel {
         }
     }
 
+    //开始游戏
     public void Start() {
         score = 0;
         service = Executors.newScheduledThreadPool(3);
@@ -139,6 +142,7 @@ public class Game extends JPanel {
             }
         }, 1500);
 
+        //鸟飞行
         service.scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
@@ -149,6 +153,7 @@ public class Game extends JPanel {
             }
         }, 0, 35, TimeUnit.MILLISECONDS);
 
+        //管子移动
         service.scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
@@ -192,6 +197,8 @@ public class Game extends JPanel {
         medal_label = null;
         currentScore_label.setVisible(false);
         currentScore_label = null;
+        bestScore_label.setVisible(false);
+        bestScore_label = null;
         score_label.setVisible(false);
         score_label = null;
         home_label.setVisible(false);
@@ -220,6 +227,12 @@ public class Game extends JPanel {
         currentScore_label = new JLabel(String.valueOf(score));
         currentScore_label.setBounds(565, 265, 20, 20);
         layeredPane.add(currentScore_label, JLayeredPane.POPUP_LAYER);
+
+        //最好分数
+        if(score>best) best= score;
+        bestScore_label = new JLabel(String.valueOf(best));
+        bestScore_label.setBounds(565, 305, 20, 20);
+        layeredPane.add(bestScore_label, JLayeredPane.POPUP_LAYER);
 
         //Home
         ImageIcon home = new ImageIcon(getClass().getResource("img/button_home.png"));
@@ -257,6 +270,7 @@ public class Game extends JPanel {
                 }
             }
         });
+
         //重新开始事件
         restart_label.addMouseListener(new MouseAdapter() {
             @Override
